@@ -6,8 +6,9 @@ import tokenize
 
 
 class CodeBlockChecker(CodeChecker):
-    def __init__(self, solution: str, user_code: str):
+    def __init__(self, solution: str, user_code: str, hints=None):
         super().__init__(solution, user_code)
+        self.hints = hints
 
     def len_test(self):
         if len(self.user_lines) != len(self.solution_lines):
@@ -20,10 +21,10 @@ class CodeBlockChecker(CodeChecker):
         if not self.len_test():
             for i in range(len(self.user_text)):
                 if '___' in self.user_text[i]:
-                    messages.append(f"Fill in all '___' gaps in code. An error was found in the line '{self.user_lines[i]}'")
+                    messages.append(f"Fill in all '___' gaps in code. An error was found in the line '{self.hints[i]}'")
 
                 elif self.user_text[i] != self.solution_text[i]:
-                    messages.append(f"Line {i}: Expected '{self.solution_lines[i]}', but got '{self.user_lines[i]}'")
+                    messages.append(f"Line {i}: Expected '{self.solution_lines[i]}', but got '{self.hints[i]}'")
 
             if messages:
                 return messages

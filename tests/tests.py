@@ -1,9 +1,8 @@
 from lib.test_block import test
 
 
-
-solution_file = 'scraper_solution.ipynb'
-user_code_file = 'scraper.ipynb'
+solution_file = '/Users/oleh.lohvyn/PycharmProjects/Testing/scraper_solution.ipynb'
+user_code_file = '/Users/oleh.lohvyn/PycharmProjects/Testing/scraper.ipynb'
 
 
 def ch2():
@@ -23,3 +22,5 @@ def ch6():
 
 def ch7():
     test(solution_file, user_code_file, 6)
+
+ch2()
