@@ -23,4 +23,3 @@ def ch6():
 def ch7():
     test(solution_file, user_code_file, 6)
 
-ch2()
