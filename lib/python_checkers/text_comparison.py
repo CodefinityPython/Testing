@@ -8,7 +8,16 @@ import tokenize
 class CodeBlockChecker(CodeChecker):
     def __init__(self, solution: str, user_code: str, hints=None):
         super().__init__(solution, user_code)
-        self.hints = hints
+        self.hints = self.clear_hints(hints)
+
+    @staticmethod
+    def clear_hints(hints):
+        cleared_hints_list = []
+        for line in hints:
+            hint = line.strip()
+            if hint and hint[0] != '#':  # перевірка на не пустий рядок та перший символ не "#"
+                cleared_hints_list.append(hint)
+        return cleared_hints_list
 
     def len_test(self):
         if len(self.user_lines) != len(self.solution_lines):
