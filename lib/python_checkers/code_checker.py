@@ -3,23 +3,25 @@ import re
 
 class CodeChecker:
     def __init__(self, solution: str, user_code: str):
-        self.solution = solution
+        self.solution =  solution
         self.user_code = user_code
-        self.solution_lines = self.clear(self.solution)
-        self.user_lines = self.clear(self.user_code)
-        self.solution_text = self.code_to_text(self.solution_lines)
-        self.user_text = self.code_to_text(self.user_lines)
+        self.solution_text = self.code_to_text(self.solution)
+        self.user_text = self.code_to_text(self.user_code)
 
     @staticmethod
-    def clear(code):
-        code = code.split('\n')
-        lines = [line for line in code if line != ""]
-        return lines
+    def code_to_text(info):
+        info = info.split('\n')
+        code = [line for line in info if line != ""]
 
-    @staticmethod
-    def code_to_text(code):
-        text_lines = []
+        cleared_hints_list = []
+
         for line in code:
+            hint = line.strip()
+            if hint[0] != '#':  # перевірка на не пустий рядок та перший символ не "#"
+                cleared_hints_list.append(hint)
+
+        text_lines = []
+        for line in cleared_hints_list:
             indent_match = re.match(r'^(\s+)', line)
             if indent_match:
                 indent = indent_match.group(1)
@@ -28,3 +30,4 @@ class CodeChecker:
             stripped_line = re.sub(r'^\s+', '', line)
             text_lines.append(indent + stripped_line)
         return text_lines
+

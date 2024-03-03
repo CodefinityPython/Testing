@@ -1,4 +1,4 @@
-import json
+import json, re
 
 
 class IpynbCode:
@@ -8,7 +8,6 @@ class IpynbCode:
         self.code = '\n'.join(self.__extract_code_from_ipynb())
 
     def __extract_code_from_ipynb(self):
-        test_indicator = 'tests.'
         with open(self.path, "r") as file:
             content = json.load(file)
 
@@ -17,6 +16,6 @@ class IpynbCode:
         for cell in content['cells']:
             if cell['cell_type'] == 'code':
                 source_code = ''.join(cell['source'])
-                if source_code.strip()[:6] != test_indicator:
-                    code_blocks.append(source_code)
+                code_blocks.append(source_code)
+
         return code_blocks + ['\n']
