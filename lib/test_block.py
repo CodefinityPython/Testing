@@ -8,17 +8,8 @@ def test(solution_file_path: str, user_code_file_path: str, index: int, debug=Fa
     solution_file = IpynbCode(solution_file_path)
     user_code_file = IpynbCode(user_code_file_path)
 
-
-
-        # solution = '\n'.join(solution_file.code_blocks[:index+1])
-        # user_code = '\n'.join(solution_file.code_blocks[:index] + user_code_file.code_blocks[index:index+1])
-
     solution = '\n'.join(solution_file.code_blocks[:index + 1])
     user_code = '\n'.join(solution_file.code_blocks[:index] + user_code_file.code_blocks[index:index + 1])
-
-    if debug:
-        print('Solution:\n', solution, '\n'*2)
-        print('User code:\n', user_code, '\n'*2)
 
     code_errors = ErrorChecker(user_code).get_errors()
 

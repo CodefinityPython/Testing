@@ -3,13 +3,13 @@ import re
 
 class CodeChecker:
     def __init__(self, solution: str, user_code: str):
-        self.solution =  solution
+        self.solution = solution
         self.user_code = user_code
         self.solution_text = self.code_to_text(self.solution)
         self.user_text = self.code_to_text(self.user_code)
 
     @staticmethod
-    def code_to_text(info):
+    def code_to_text(info, remove_comments=True):
         info = info.split('\n')
         code = [line for line in info if line != ""]
 
@@ -17,7 +17,9 @@ class CodeChecker:
 
         for line in code:
             hint = line.strip()
-            if hint[0] != '#':  # перевірка на не пустий рядок та перший символ не "#"
+            if hint[0] != '#' or not remove_comments:  # перевірка на не пустий рядок та перший символ не "#"
+                if remove_comments:
+                    hint = re.sub(r'\s*#.*$', '', hint)  # видалення коментарів
                 cleared_hints_list.append(hint)
 
         text_lines = []
