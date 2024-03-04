@@ -9,7 +9,8 @@ class CodeChecker:
         self.user_text = self.code_to_text(self.user_code)
 
     @staticmethod
-    def code_to_text(info, remove_comments=True):
+    def code_to_text(info):
+        remove_comments = True
         info = info.split('\n')
         code = [line for line in info if line != ""]
 
@@ -17,9 +18,9 @@ class CodeChecker:
 
         for line in code:
             hint = line.strip()
-            if hint[0] != '#' or not remove_comments:  # перевірка на не пустий рядок та перший символ не "#"
+            if hint and (hint[0] != '#' or not remove_comments):
                 if remove_comments:
-                    hint = re.sub(r'\s*#.*$', '', hint)  # видалення коментарів
+                    hint = re.sub(r'\s*#.*$', '', hint)
                 cleared_hints_list.append(hint)
 
         text_lines = []
