@@ -41,7 +41,7 @@ class CodeBlockChecker(CodeChecker):
                     messages.append(f"Fill in all '___' gaps in code. An error was found in the line '{self.solution_text[i]}'")
 
                 elif user_codes[i] != solution_codes[i]:
-                    messages.append(f"Expected '{self.solution_text[i]}', but got '{self.solution_text[i]}'")
+                    messages.append(f"Expected '{self.solution_text[i]}', but got '{self.user_text[i]}'")
 
             if messages:
                 return messages
