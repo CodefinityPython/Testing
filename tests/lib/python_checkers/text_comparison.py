@@ -1,8 +1,4 @@
-from lib.python_checkers.code_checker import CodeChecker
-
-
-import io
-import tokenize
+from tests.lib.python_checkers.code_checker import CodeChecker
 
 
 class CodeBlockChecker(CodeChecker):
@@ -28,7 +24,6 @@ class CodeBlockChecker(CodeChecker):
             new_code = space + ''.join(code.split())
             new_codes.append(new_code)
         return new_codes
-
 
 
     def is_different(self):

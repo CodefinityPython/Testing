@@ -1,7 +1,7 @@
 # Імпортуємо необхідні модулі та функції з інших файлів
-from lib.python_checkers.ipynb import IpynbCode
-from lib.python_checkers.text_comparison import CodeChecker, CodeBlockChecker, ErrorChecker
-from lib.messages import success, error
+from tests.lib.python_checkers.ipynb import IpynbCode
+from tests.lib.python_checkers.text_comparison import CodeBlockChecker, ErrorChecker
+from tests.lib.messages import success, error
 
 
 def test(solution_file_path: str, user_code_file_path: str, index: int, debug=False):
